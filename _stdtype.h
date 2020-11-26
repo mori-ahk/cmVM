@@ -19,7 +19,11 @@ typedef uint16_t  u16;
 typedef int16_t   i16;
 typedef uint32_t  u32;
 typedef uint64_t  u64;
+#if macOS
 typedef int64_t   i32;
+#else
+typedef int32_t   i32;
+#endif
 typedef float     f32;
 
 #ifdef Ptr16bits
