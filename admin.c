@@ -53,14 +53,17 @@ static void Usage() {
 
 // To get the base RAM address on a memory segment increment.
 static u8* GetBaseAddr(u8* memAddr, u32 memInc) {
+#if macOS
     u64 a = (u64)memAddr + memInc;
     u64 m = memInc - 1U;
-//t    VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
-//t    VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
-
     u64 r = a & ~m;
-//t    VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
     return (u8*)r;
+#else
+    u32 a = (u32)memAddr + memInc;
+    u32 m = memInc - 1U;
+    u32 r = a & ~m;
+    return (u8*)r;
+#endif
 }
 
 FILE* file;
