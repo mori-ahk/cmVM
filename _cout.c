@@ -82,9 +82,6 @@ IOut Out_GetFactory(const char* whichOne) {
 }
 
 #ifdef DebugBSL
-#include <util/delay.h>
-#define MS_DELAY 2000
-
 int main(void) {
     Out_GetFactory("");
     COut_PutS("Test");
