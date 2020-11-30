@@ -7,7 +7,7 @@
 #ifndef __CmVMStack_h
 #define __CmVMStack_h
 
-#include "_stdtype.h"
+#include "BSL/_stdtype.h"
 
         struct VMStackDesc;
 typedef struct VMStackDesc*  Stack;
