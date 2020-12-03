@@ -8,7 +8,7 @@
 #ifndef __hal_h
 #define __hal_h
 
-#include "_out.h"
+#include "../BSL/_out.h"
 
 void Hal_Init(void);
 

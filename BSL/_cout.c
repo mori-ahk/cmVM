@@ -5,9 +5,9 @@
 */
 
 #include "_outdesc.h"
+#include "_xtoa.h"
 
 #if ConsoleOutputWithPrintf
-
 #include <stdio.h>
 
 static void COut_PutB(bool b)        { printf("%s", b ? "true" : "false"); }
@@ -17,9 +17,10 @@ static void COut_PutI(i32  i)        { printf("%ld", i); }
 static void COut_PutU(u32  u)        { printf("%lu", u); }
 static void COut_PutX(u32  u)        { printf("%08lX", u); } // To make hex output always aligned to 8 hex digits.
 static void COut_PutN(void)          { printf("\n"); }
-
 #else
-#include "_xtoa.h"
+
+static char  buf[12];                /* to cover max size (12) "i32" (10+sign+null) */
+#ifdef onTarget
 #include <avr/io.h>
 
 #define BAUD 9600
@@ -34,9 +35,6 @@ static void uart_print_Char(char c) {
 // External refs to 'console.c' without
 void Console_Putchar(char  c) { uart_print_Char(c); }
 
-
-static char  buf[12];                /* to cover max size (12) "i32" (10+sign+null) */
-
 static void COut_Init(void) {
     // Set baud rate
     UBRR0H = (MYUBRR >> 8);
@@ -47,8 +45,11 @@ static void COut_Init(void) {
 
     // 8 bit data frame, 1 stop bit
     UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
-
 }
+#else
+void Console_Putchar(char  c);
+#endif
+
 
 static void COut_PutC(char c)        { Console_Putchar(c); }
 static void COut_PutS(const char* s) { while (*s) Console_Putchar(*s++); }
@@ -75,7 +76,9 @@ static bool init = 0;
 IOut Out_GetFactory(const char* whichOne) {
     if (!init) {
         whichOne = 0; // To avoid the warning on the unreferenced formal parameter
+#ifdef onTarget
         COut_Init();
+#endif
         init = true;
     }
     return &cout;

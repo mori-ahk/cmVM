@@ -7,7 +7,7 @@
 #ifndef __CmVM_VMOut_h
 #define __CmVM_VMOut_h
 
-#include "_out.h"
+#include "../BSL/_out.h"
 
 void VMOut_Init(IOut out);
 
