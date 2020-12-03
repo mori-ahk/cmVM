@@ -4,7 +4,7 @@
 //
 */
 
-#include "HAL/out.h"
+#include "../HAL/out.h"
 #include "vmstack.h"
 
 typedef struct VMStackDesc {

@@ -4,8 +4,8 @@
 //
 */
 
-#include "HAL/out.h"
-#include "HAL/ioreg.h"
+#include "../HAL/out.h"
+#include "../HAL/ioreg.h"
 #include <string.h> /* strtok */
 #include <stdlib.h> /* exit */
 
@@ -15,7 +15,7 @@
 #define CANNOT_BE_ALLOCATED            "cannot be allocated.\n"
 
 #include "opcode.h"
-#include "VM stack/vmstack.h"
+#include "../VM stack/vmstack.h"
 #include "vm.h"
 
 #ifdef IORegOn

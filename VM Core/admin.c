@@ -9,8 +9,8 @@
 #include <stdio.h>  /* for FILE   */
 #include <string.h> /* for strtok */
 
-#include "HAL/hal.h"
-#include "HAL/out.h"
+#include "../HAL/hal.h"
+#include "../HAL/out.h"
 #include "vm.h"
 
 #ifdef Dos16
@@ -133,10 +133,6 @@ int main(int argc, char* argv[]) {
     // ********* Important to adjust memory before loading the file in memory.
 //t    VMOut_PutS("GetBaseAddr(): sizeof u8* = "); VMOut_PutI((i32)sizeof(u8*)); VMOut_PutN();
 //t    VMOut_PutS("GetBaseAddr(): sizeof u32 = "); VMOut_PutI((i32)sizeof(u32)); VMOut_PutN();
-#if onTarget
-    mem = { 0x91, 0xFF, 0x82, 0x00 };
-    DisplayBanner();
-#else
     mem = GetBaseAddr(memAllocated, (u32)1024UL);
 //t    VMOut_PutS("Admin: memAllocated = "); VMOut_PutX((u32)memAllocated); VMOut_PutN();
 //t    VMOut_PutS("Admin: mem          = "); VMOut_PutX((u32)mem); VMOut_PutN();
@@ -190,8 +186,6 @@ int main(int argc, char* argv[]) {
         Usage();
         return -4;
     }
-#endif
-
     VM_Init(mem);
     VM_execute(mem);
     return 0;

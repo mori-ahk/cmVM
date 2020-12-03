@@ -20,7 +20,7 @@ static void COut_PutN(void)          { printf("\n"); }
 #else
 
 static char  buf[12];                /* to cover max size (12) "i32" (10+sign+null) */
-#if onTarget
+#ifdef onTarget
 #include <avr/io.h>
 
 #define BAUD 9600
@@ -76,7 +76,7 @@ static bool init = 0;
 IOut Out_GetFactory(const char* whichOne) {
     if (!init) {
         whichOne = 0; // To avoid the warning on the unreferenced formal parameter
-#if onTarget
+#ifdef onTarget
         COut_Init();
 #endif
         init = true;
