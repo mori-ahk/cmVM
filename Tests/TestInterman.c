@@ -5,11 +5,11 @@
 */
 
 #ifdef onTarget
-#include "hal.h"      // Hal_Init()
-#include "out.h"  // All VMOut_Put*
+#include "../HAL/hal.h"      // Hal_Init()
+#include "../HAL/out.h"  // All VMOut_Put*
 #include <avr/io.h>
 #include "../BSL/_interman.h"
-#include "interman.h"
+#include "../HAL/interman.h"
 
 // Interrupt Bit is the I-Bit (Bit 7) of SREG (AVR Status Register).
 // When I-Bit is cleared (0) all interrupts are disabled.
@@ -39,7 +39,7 @@ int main(void ) {
     // I[d]        means I-Bit disabled.
     // SI[x]       means save I-Bit status x.
 
-    VMOut_PutS("OnEntry: I[d] | <EI>I[e]<DI>I[d] | <SDI>SI[d]I[d]<RI>I[d] | <EI>[e]<SDI>SI[e]I[d]<RI>I[e] | OnExit: I[e]\n");
+    VMOut_PutS("OnEntry: I[d] | <EI>I[e]<DI>I[d] | <SDI>SI[d]I[d]<RI>I[d] | <EI>I[e]<SDI>SI[e]I[d]<RI>I[e] | OnExit: [e]\n");
 
     VMOut_PutS("OnEntry: I");
     VMOut_PutS( (GetStatusReg() & InterruptBit) ? Enabled : Disabled);
