@@ -83,16 +83,3 @@ IOut Out_GetFactory(const char* whichOne) {
     }
     return &cout;
 }
-
-#ifdef DebugBSL
-int main(void) {
-    Out_GetFactory("");
-    COut_PutS("Test");
-    COut_PutN();
-    COut_PutI(0x80000000L);
-    COut_PutN();
-    COut_PutX(0xFFFFFFFFL);
-    COut_PutN();
-}
-
-#endif

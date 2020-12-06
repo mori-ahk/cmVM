@@ -4,11 +4,11 @@
 //
 */
 
-#include "hal.h"     // hal_Init()
-#include "hal_Out.h" // All VMOut_Put*
+#include "../HAL/hal.h"     // hal_Init()
+#include "../HAL/out.h" // All VMOut_Put*
 
 int main(void) {
-    hal_Init();
+    Hal_Init();
 
     VMOut_PutS("Test Out:<2\n");
     VMOut_PutS("Bools: [T|F|T|T]\n");
