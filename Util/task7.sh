@@ -2,4 +2,4 @@ avr-gcc -Os -Wall -DF_CPU=16000000UL -mmcu=atmega328p -DonTarget ../BSL/_TestIOR
 
 avr-objcopy -O ihex -j .text -j .data TestIOReg.o  TestIOReg.hex
 
-avrdude -c arduino -p atmega328p -b 57600 -P /dev/cu.usbserial-14310 -D -Uflash:w:TestIOReg.hex:i
+avrdude -c arduino -p atmega328p -b 57600 -P $1 -D -Uflash:w:TestIOReg.hex:i
