@@ -3,3 +3,6 @@ avr-gcc -Os -Wall -DF_CPU=16000000UL -mmcu=atmega328p -DonTarget ../VM\ Core/_ad
 avr-objcopy -O ihex -j .text -j .data _admin.o  _admin.hex
 
 avrdude -c arduino -p atmega328p -b 57600 -P $1 -D -Uflash:w:_admin.hex:i
+
+# deleting hex and object file after we are done with them
+rm -rf *.hex *.o
