@@ -30,7 +30,6 @@ void uart_TxChar(char c) {
 char uart_RxChar(void) {
     // Wait until data is received
     while (!(UCSR0A & (1 << RXC0)));
-
     // Read the data from the RX buffer
     char input = UDR0;
     return input;

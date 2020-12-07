@@ -8,11 +8,8 @@
 
 u8 counter;
 bool isProcessing;
-enum Status { Success = 0x40, UnknownCmd, InvalidCmd, InvalidAddr, ChecksumInvalid };
+enum Status { Success = 0x40, InvalidCmd };
 
-void loader_init(void);
-
-static bool load(u8* mem);
-
+bool load(u8* mem);
 #endif
 
