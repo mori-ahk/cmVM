@@ -6,7 +6,7 @@
 
 #ifdef onTarget
 #include "../HAL/hal.h"       
-#include "_IOReg.h"
+#include "../BSL/_IOReg.h"
 
 #include <avr/io.h>
 #include <util/delay.h>
