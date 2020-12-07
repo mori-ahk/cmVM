@@ -4,5 +4,15 @@
 
 #ifndef SRC_LOADER_H
 #define SRC_LOADER_H
+#include "../BSL/_stdtype.h"
 
-#endif //SRC_LOADER_H
+u8 counter;
+bool isProcessing;
+enum Status { Success = 0x40, UnknownCmd, InvalidCmd, InvalidAddr, ChecksumInvalid };
+
+void loader_init(void);
+
+static bool load(u8* mem);
+
+#endif
+
