@@ -39,7 +39,7 @@ int main(void ) {
     // I[d]        means I-Bit disabled.
     // SI[x]       means save I-Bit status x.
 
-    VMOut_PutS("OnEntry: I[d] | <EI>I[e]<DI>I[d] | <SDI>SI[d]I[d]<RI>I[d] | <EI>I[e]<SDI>SI[e]I[d]<RI>I[e] | OnExit: [e]\n");
+    VMOut_PutS("OnEntry: I[d] | <EI>I[e]<DI>I[d] | <SDI>SI[d]I[d]<RI>I[d] | <EI>[e]<SDI>SI[e]I[d]<RI>I[e] | OnExit: I[e]\n");
 
     VMOut_PutS("OnEntry: I");
     VMOut_PutS( (GetStatusReg() & InterruptBit) ? Enabled : Disabled);
