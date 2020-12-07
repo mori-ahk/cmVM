@@ -22,30 +22,9 @@ static void COut_PutN(void)          { printf("\n"); }
 static char  buf[12];                /* to cover max size (12) "i32" (10+sign+null) */
 #ifdef onTarget
 #include <avr/io.h>
-
-#define BAUD 9600
-#define MYUBRR F_CPU/16/BAUD-1
-
-static void uart_print_Char(char c) {
-    // Wait until buffer is empty
-    while (!(UCSR0A & (1 << UDRE0)));
-    UDR0 = c;
-}
-
-// External refs to 'console.c' without
-void Console_Putchar(char  c) { uart_print_Char(c); }
-
-static void COut_Init(void) {
-    // Set baud rate
-    UBRR0H = (MYUBRR >> 8);
-    UBRR0L = MYUBRR;
-
-    // Enable receiver and transmitter
-    UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
-
-    // 8 bit data frame, 1 stop bit
-    UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
-}
+#include "_uart.h"
+void Console_Putchar(char  c) { uart_TxChar(c); }
+static void COut_Init(void) { uart_init(); }
 #else
 void Console_Putchar(char  c);
 #endif
@@ -83,16 +62,3 @@ IOut Out_GetFactory(const char* whichOne) {
     }
     return &cout;
 }
-
-#ifdef DebugBSL
-int main(void) {
-    Out_GetFactory("");
-    COut_PutS("Test");
-    COut_PutN();
-    COut_PutI(0x80000000L);
-    COut_PutN();
-    COut_PutX(0xFFFFFFFFL);
-    COut_PutN();
-}
-
-#endif

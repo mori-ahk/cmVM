@@ -9,9 +9,9 @@ runTest() {
 
         if [ $i -eq 1 ]
         then
-            ../cmake-build-debug/./src ../Suite_of_12_Tests/$filename > VMOutput.txt
+            ./src ../Suite_of_12_Tests/$filename > VMOutput.txt
         else
-            ../cmake-build-debug/./src ../Suite_of_12_Tests/$filename >> VMOutput.txt
+            ./src ../Suite_of_12_Tests/$filename >> VMOutput.txt
         fi
     done
 
