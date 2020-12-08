@@ -117,8 +117,8 @@ public class SerialComPort {
 
         // Create a new SerialPort with the same Arduino Nano settings.
         _serialPort = new SerialPort();
-        _serialPort.PortName = "/dev/cu.usbserial-14310";
-        _serialPort.BaudRate = 9600; ;
+        _serialPort.PortName = "/dev/cu.usbserial-14110";
+        _serialPort.BaudRate = 9600;
         _serialPort.Parity = Parity.None;
         _serialPort.DataBits = 8;
         _serialPort.StopBits = StopBits.One;
@@ -176,7 +176,6 @@ public class SerialComPort {
             try {
                 int size = _serialPort.Read(buffer, 0, 1);
 //t                Console.Write("size[" + string.Format("{0:X2}", buffer[0]) + "]:");
-                Console.Write((char)buffer[0]);
                 if (buffer[0] != 0) {
                     do {
                         if (!_run && (buffer[0] == Ack)) {
