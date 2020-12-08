@@ -33,6 +33,7 @@ All the scripts except `task1.sh` expects an argument, which is the serial port 
 After compiling the files and loading the `.hex` file to the target (Arduino Nano) successfully, you can have the serial communication to see the output using the `screen` command. And if you would like to have the result in a log file, pass `-L` flag to `screen`.
 
 > **Screen command is only available in Linux and macOS**
+
 > For example: screen -L /dev/cu.usbserial14110
 
 #### More about task 1
